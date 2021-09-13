@@ -18,14 +18,34 @@
 
     const MeuForm = () => {
 
-      let nome
+      // let nome //variável comum
+      // variáveis comuns perdem seu valor com redesenho da tela
+
+      /*
+        VARIÁVEL DE ESTADO
+        É uma variável especial que retém seu valor
+        mesmo quando o estado (conteúdo) do componente é alterado e este é redesenhado.
+
+        Variáveis de estado são criadas com a função React.useState().
+        que retorna um vetor com dois elementos:
+        1°: a variável de estado propriamente dita (somente leitura)
+        2°: uma função que deverá ser usada para autalizar o valor da variável de estado
+
+        React.useState() tem como parametro o valor inicial da variável de estado (é obrigatório especificar)
+
+        useState cria uma variável, no caso "nome" que é somente leitura.
+        para alterar esse "nome", foi criada a função setNome
+      */
+
+      const [nome, setNome] = React.useState('')
 
       const handleChange = event => { // função handleChange passa event como parametro
         // event é um objeto que contem informações sobre o evento que foi disparado
         // event.target aponta para o elemento que disparou o evento, no caso o própio input
 
         // document.getElementById('campo-nome').value // Acesso direto
-        nome = event.target.value // Acesso indireto
+        //nome = event.target.value // Acesso indireto
+        setNome(event.target.value) // como o setter do Java
         // Modo JS puro de modificar conteúdo de um elemento com o valor de uma variável
         // document.getElementById('debug').textContent = nome.toUpperCase()
       }
@@ -40,7 +60,7 @@
                 o primeiro termo é uma palavra reservada em JavaScript */ }
           <label htmlFor="campo-nome">Informe seu nome:</label><br />
           <input id="campo-nome" onChange={handleChange} /><br /> {/* onChange vai chamar a função handleChange*/}
-          <div id="debug">{nome}</div>
+          <div id="debug">{nome.toUpperCase()}</div>
           <button type="submit">Enviar</button>
         </form>
       )

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    const MeuForm = () => {
+
+      const [info, setInfo] = React.useState('Nenhuma informação ainda')
+
+      const handleInputChange = event => {
+        if(event.target.id === 'num') {
+          setInfo(`Você alterou o PRIMEIRO número (${event.target.value})`)
+        }
+        else{
+          setInfo(`Você alterou o SEGUNDO número(${event.target.value})`)
+        }
+      }
+
+      return(
+        <form>
+          <label htmlFor="num1">Primeiro número:</label>
+          <input id="num1" type="number" onChange={handleInputChange} /><br />
+          <label htmlFor="num2">Segundo número:</label>
+          <input id="num2" type="number" onChange={handleInputChange} /><br />
+          <label htmlFor="soma">Soma:</label>
+          <input id="soma" type="number" readonly /> <br />
+          <p>{info}</p>
+
+        </form>
+      )
+    }
+
+    ReactDOM.render(<MeuForm />, document.getElementById('root'))
+
+  </script>
+  
+</body>
+</html>
