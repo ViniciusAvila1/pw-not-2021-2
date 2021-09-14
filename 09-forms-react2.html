@@ -17,26 +17,62 @@
   <script type="text/babel">
 
     const MeuForm = () => {
+      
+      // aqui onde cria a variável de estado
 
       const [info, setInfo] = React.useState('Nenhuma informação ainda')
+      const [nome, setNome] = React.useState('')
+      const [num1, setNum1] = React.useState('')
+      const [num2, setNum2] = React.useState('')
+      // const [soma, setSoma] = React.useState(0)
 
       const handleInputChange = event => {
-        if(event.target.id === 'num') {
+        if(event.target.id === 'nome'){
+          setInfo(`Você alterou o NOME (${event.target.value})`)
+          setNome(event.target.value.toUpperCase())
+        }
+        else if(event.target.id === 'num1') {
           setInfo(`Você alterou o PRIMEIRO número (${event.target.value})`)
+          // cada input altera a sua propria variavel de estado
+          setNum1(event.target.value)
         }
         else{
           setInfo(`Você alterou o SEGUNDO número(${event.target.value})`)
+          setNum2(event.target.value)
         }
+        // setSoma(Number(num1) + Number(num2))
+        // event.target é o componente que disparou o evento
+        // se o id do target for "num1", 
+        // então estou no primeiro número, no primeiro input
       }
 
       return(
         <form>
+          <label htmlFor="nome">Nome:</label>
+          <input id="nome" value={nome} onChange=
+          {handleInputChange} /><br />
+
           <label htmlFor="num1">Primeiro número:</label>
-          <input id="num1" type="number" onChange={handleInputChange} /><br />
+          {/* Quando um componente possui uma variável de estado
+            associada a ele, variável essa que é atualizada
+            pelo evento onChange e, posteriormente,
+            o valor atualizado da variável de estado é devolvido
+            ao componente em seu atributo value, dizemos que
+            se trata de um COMPONENTE CONTROLADO.
+          */}
+          {/* Depois que altera a variável de estado,
+          devolve o valor pro input no value, ou seja
+          o value passa a mostrar o valor do input */}
+          <input id="num1" type="number" value={num1} onChange=
+          {handleInputChange} /><br />
+          {/* handleInputChange altera uma variável estado que está
+          associada a um input */}
           <label htmlFor="num2">Segundo número:</label>
-          <input id="num2" type="number" onChange={handleInputChange} /><br />
+          <input id="num2" type="number" value={num2} onChange=
+          {handleInputChange} /><br />
+
           <label htmlFor="soma">Soma:</label>
-          <input id="soma" type="number" readonly /> <br />
+          <input id="soma" type="number" value={Number(num1) + Number(num2)} readonly /> <br />
           <p>{info}</p>
 
         </form>
