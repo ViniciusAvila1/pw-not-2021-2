@@ -54,7 +54,7 @@
         <div id="root">
             <div class="input-set"> <!-- Componente 1 -->
                 <label for="peso">Peso</label>
-                <input id="peso" type="number" onchange={handleInputChange} /> 
+                <input id="peso" type="number" onchange={handleInputChange} /> {/* input alterando a variável de estado */}
             </div>
 
             <div class="input-set"> <!-- Componente 2 -->
@@ -110,6 +110,16 @@
             event.preventDefault()
         }
 
+        if(setResult < 18.5){
+            return "peso baixo"
+        }
+        else if(result < 25){
+            return "Peso normal"
+        }
+        else if(result < 30){
+            return "Sobrepeso"
+        }
+        else if(result)
 
     /**********************************************************************************
     3. Escreva o código do useEffect(), contemplando os passos seguintes:
@@ -126,6 +136,18 @@
         terceiro componente, para exibir o resultado
     - NÃO SE ESQUEÇA DAS DEPENDÊNCIAS DO useEffect()!!!
     **********************************************************************************/
+
+        // React.useEffect(() => {
+            // let peso, altura
+
+            /* Fausto, ainda não entendi o useEffect, não esperava ele cair na prova.
+                Tentei fazer com useSate mas tive dificuldade também.
+
+                Na questão dos componentes, 
+            */
+            
+
+        
 
     /**********************************************************************************
      4. Faça com que mudanças nos inputs dos dois primeiros componentes atualizem
