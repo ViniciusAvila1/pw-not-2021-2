@@ -7,4 +7,6 @@ console.log({primeiroNeg})
 /*
   find() retorna o primeiro elemento que faça com que a função passada
   como parâmetro retorne true.
+
+  no exemplo, assim que a função encontrou um número negativo, já declarou ele.
 */

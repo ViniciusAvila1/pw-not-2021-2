@@ -20,6 +20,13 @@ console.log(frutas3)
   cada um dos elementos do vetor original.
   O tamanho do novo vetor gerado é SEMPRE IGUAL ao tamanho
   do vetor original (correspondência 1:1).
+
+  Aplica uma função pra cada elemento do vetor original e gera um 
+  segundo vetor com resultado dessa função aplicada pra cada elemento
+
+  O número de elementos do segundo vetor é sempre igual ao número de elementos do vetor original
+
+  o map aplica uma transformação em cada elemento
 */
 
 // Gerar um novo vetor que contenha os números elevados ao quadrado
