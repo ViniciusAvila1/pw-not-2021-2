@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 //não precisou colocar ./ pois o react-router-dom já está no node modules
 import Teste1 from './exercícios/Teste1'
 import Teste2 from './exercícios/Teste2'
+import Exercício01 from './exercícios/01'
 //precisa colocar ./ antes pois os testes vêm de outra pasta
 
 import './App.css';
@@ -29,6 +30,9 @@ function App() {
           <li>
           <Link to="teste2">Teste 2</Link>
           </li>
+          <li>
+          <Link to="ex01">Exercício 01</Link>
+          </li>
         </ul>
 
         <div style={{ border: '1px solid blue', padding: '20px'}}>
@@ -40,6 +44,9 @@ function App() {
           </Route>
           <Route path="/teste2">
             <Teste2 />
+          </Route>
+          <Route path="/ex01">
+            <Exercício01 />
           </Route>
         </Switch>
         </div>
