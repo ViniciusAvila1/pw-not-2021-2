@@ -20,7 +20,7 @@ function App() {
         podem ser usadas dentro de componentes funcionais para
         armazenar dados ou para realizar ações atreladas ao
         ciclo de vida do componente (efeitos colaterais).
-        Essas funções incluem <code>useState</code>, <code> useEffect</code>
+        Essas funções incluem <code>useState</code>, <code>useEffect </code>
         e <code>useRef</code>.
       </blockquote>
 
