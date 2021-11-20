@@ -5,6 +5,8 @@ import Teste2 from './exercícios/Teste2'
 import Exercício01 from './exercícios/01'
 import Exercício02 from './exercícios/02'
 import Exercício03 from './exercícios/03'
+import Exercício04 from './exercícios/04'
+
 
 
 //precisa colocar ./ antes pois os testes vêm de outra pasta
@@ -43,6 +45,9 @@ function App() {
           <li>
           <Link to="ex03">Exercício 03</Link>
           </li>
+          <li>
+          <Link to="ex04">Exercício 04</Link>
+          </li>
         </ul>
 
         <div style={{ border: '1px solid blue', padding: '20px'}}>
@@ -63,6 +68,9 @@ function App() {
           </Route>
           <Route path="/ex03">
             <Exercício03 />
+          </Route>
+          <Route path="/ex04">
+            <Exercício04 />
           </Route>
         </Switch>
         </div>
