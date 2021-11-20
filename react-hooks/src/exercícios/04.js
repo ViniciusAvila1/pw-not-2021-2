@@ -58,7 +58,8 @@ function Board() {
     // 💰 `squaresCopy[square] = nextValue`
     //
     // 🐨 set the squares to your copy
-    let squaresTemp = [...squares]  // Copiou o vetor de estado
+    let squaresTemp = [...squares]  // Copiou o vetor de estado ANTES
+    // da atualização
     squaresTemp[square] = nextValue
     setSquares(squaresTemp)
 
