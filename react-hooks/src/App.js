@@ -6,6 +6,7 @@ import Exercício01 from './exercícios/01'
 import Exercício02 from './exercícios/02'
 import Exercício03 from './exercícios/03'
 import Exercício04 from './exercícios/04'
+import Exercício05 from './exercícios/05'
 
 
 
@@ -48,6 +49,9 @@ function App() {
           <li>
           <Link to="ex04">Exercício 04</Link>
           </li>
+          <li>
+          <Link to="ex05">Exercício 05</Link>
+          </li>
         </ul>
 
         <div style={{ border: '1px solid blue', padding: '20px'}}>
@@ -71,6 +75,9 @@ function App() {
           </Route>
           <Route path="/ex04">
             <Exercício04 />
+          </Route>
+          <Route path="/ex05">
+            <Exercício05 />
           </Route>
         </Switch>
         </div>
