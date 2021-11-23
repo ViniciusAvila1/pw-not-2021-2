@@ -5,9 +5,23 @@ PokemonDataView} from '../pokemon'
 
 function PokemonInfo({pokemonName}) {
   // 🐨 Have state for the pokemon (null)
+
+  /*
   const [pokemon, setPokemon] = React.useState(null)
   const [error, setError] = React.useState(null)
   const [status, setStatus] = React.useState('idle') // ocioso
+  */
+    const [state, setState] = React.useState({
+      pokemon: null,
+      error: null,
+      status: 'idle'
+    })
+
+    // Criano variáveis avulsar somente-leitura para facilitar
+    // o trabalho com variável de estado objeto
+    // (usando desestruturação)
+    const { pokemon, error, status } = state
+
   // 🐨 use React.useEffect where the callback should be called whenever the
   // pokemon name changes.
   // 💰 DON'T FORGET THE DEPENDENCIES ARRAY!
@@ -18,9 +32,10 @@ function PokemonInfo({pokemonName}) {
   if(! pokemonName) return
   // 🐨 before calling `fetchPokemon`, clear the current 
   // pokemon state by setting it to null
-  setPokemon(null)
-  setError(null)
-  setStatus('pending') // Pendente
+  /// setPokemon(null)
+  /// setError(null)
+  /// setStatus('pending') // Pendente
+  setState({pokemon: null, error: null, status: 'pending'})
 
   // 💰 Use the `fetchPokemon` function to fetch a pokemon by its name:
   //   fetchPokemon('Pikachu').then(
@@ -28,13 +43,20 @@ function PokemonInfo({pokemonName}) {
   //   )
   fetchPokemon(pokemonName).then( // Quando a requisição deu certo
     pokemonData => {
-      setPokemon(pokemonData)
-      setStatus('resolved') // Requisição resolvida com sucesso
+      /// setPokemon(pokemonData)
+      /// setStatus('resolved') // Requisição resolvida com sucesso
+
+      /// let stateTemp = {... state} // copi o objeto state
+      /// stateTemp.pokemon = pokemonData 
+      /// stateTemp.status = 'resolved'
+      /// setState(stateTemp)
+      setState({...state, pokemon: pokemonData, status:'resolved'})
     }
   ).catch( // Deu errado
     error => {
-      setError(error)
-      setStatus('rejected') // Requisição foi rejeitada (com erro)
+      /// setError(error)
+      /// setStatus('rejected') // Requisição foi rejeitada (com erro)
+      setState({...state, error: error, status: 'rejected'})
     }
   )
 
