@@ -6,6 +6,8 @@ PokemonDataView} from '../pokemon'
 function PokemonInfo({pokemonName}) {
   // 🐨 Have state for the pokemon (null)
   const [pokemon, setPokemon] = React.useState(null)
+  const [error, setError] = React.useState(null)
+  const [status, setStatus] = React.useState('idle') // ocioso
   // 🐨 use React.useEffect where the callback should be called whenever the
   // pokemon name changes.
   // 💰 DON'T FORGET THE DEPENDENCIES ARRAY!
@@ -17,28 +19,79 @@ function PokemonInfo({pokemonName}) {
   // 🐨 before calling `fetchPokemon`, clear the current 
   // pokemon state by setting it to null
   setPokemon(null)
+  setError(null)
+  setStatus('pending') // Pendente
 
   // 💰 Use the `fetchPokemon` function to fetch a pokemon by its name:
   //   fetchPokemon('Pikachu').then(
   //     pokemonData => { /* update all the state here */},
   //   )
-  fetchPokemon(pokemonName)
-  // 🐨 return the following things based on the `pokemon` 
-  // state and `pokemonName` prop:
-  //   1. no pokemonName: 'Submit a pokemon'
-  //   2. pokemonName but no pokemon: <PokemonInfoFallback 
-  // name={pokemonName} />
-  //   3. pokemon: <PokemonDataView pokemon={pokemon} />
+  fetchPokemon(pokemonName).then( // Quando a requisição deu certo
+    pokemonData => {
+      setPokemon(pokemonData)
+      setStatus('resolved') // Requisição resolvida com sucesso
+    }
+  ).catch( // Deu errado
+    error => {
+      setError(error)
+      setStatus('rejected') // Requisição foi rejeitada (com erro)
+    }
+  )
 
+  // fetchPokemon().then(f1).catch(f2)
+  
 
   }, [pokemonName]) // toda vez que o nome do pokemon mudar, 
   // vai executar esse useEffect()
 
+  // 🐨 return the following things based on the `pokemon` 
+  // state and `pokemonName` prop:
+  //   1. no pokemonName: 'Submit a pokemon'
+  //   2. pokemonName but no pokemon: 
+  // <PokemonInfoFallback name={pokemonName} />
+  //   3. pokemon: <PokemonDataView pokemon={pokemon} />
 
+  /*
+  if(error) return(
+    <div role="alert">
+      There was an error: <pre style={{whiteSpace: 'normal'}}
+      >{error.message}</pre>
+    </div>
+  )
+  else if(! pokemonName) return 'Submit a pokemon'
+  else if(pokemonName && ! pokemon) return (
+    <PokemonInfoFallback name={pokemonName} />
+  )
+  else return(
+    <PokemonDataView pokemon={pokemon} />
+  )
+  */
+
+  switch(status) {
+
+    case 'idle':
+      return 'Submit a pokemon'
+
+    case 'pending':
+      return (
+        <PokemonInfoFallback name={pokemonName} />
   
+      )
 
-  // 💣 remove this
-  return 'TODO'
+    case 'resolved':
+      return (
+      <PokemonDataView pokemon={pokemon} />
+      )
+
+    case 'rejected':
+      return(
+          <div role="alert">
+            There was an error: <pre style={{whiteSpace: 'normal'}}
+            >{error.message}</pre>
+          </div>
+      )
+
+  }
 }
 
 export default function Exercicio06() {
